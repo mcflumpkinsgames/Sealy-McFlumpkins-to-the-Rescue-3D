@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 7794703491405064726}
   - component: {fileID: 8383945472841575119}
   - component: {fileID: 94267092055790854}
+  - component: {fileID: 4270129277215356434}
   m_Layer: 0
   m_Name: Sealy McFlumpkins
   m_TagString: Untagged
@@ -194,6 +195,18 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!114 &4270129277215356434
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1913006060015833485}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 192cd34a905454ca9ac4c17eece404a9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &4213245130255096187
 PrefabInstance:
   m_ObjectHideFlags: 0
