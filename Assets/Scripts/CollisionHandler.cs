@@ -3,6 +3,12 @@ using UnityEngine.SceneManagement;
 
 public class CollisionHandler : MonoBehaviour
 {
+    int currentSceneIndex;
+
+    void Start()
+    {
+        currentSceneIndex = SceneManager.GetActiveScene().buildIndex;
+    }
     private void OnCollisionEnter(Collision other) {
         switch (other.gameObject.tag)
         {
@@ -13,7 +19,12 @@ public class CollisionHandler : MonoBehaviour
                 Debug.Log("Fibsh!!");
                 break;
             case "Finish":
-                Debug.Log("I flumped to the finish now my reward is fibsh");
+                int nextScene = currentSceneIndex+1;
+                if (nextScene < SceneManager.sceneCountInBuildSettings) {
+                    SceneManager.LoadScene(nextScene);
+                } else {
+                    Debug.Log("look at me look at me I'm a winner");
+                }
                 break;
             default:
                 Debug.Log("Owwww wtf");
@@ -23,7 +34,6 @@ public class CollisionHandler : MonoBehaviour
     }
 
     void ReloadScene() {
-        int currentSceneIndex = SceneManager.GetActiveScene().buildIndex;
         SceneManager.LoadScene(currentSceneIndex);
     }
 

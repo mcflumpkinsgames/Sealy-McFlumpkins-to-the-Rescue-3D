@@ -8,4 +8,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/Swim Over.unity
     guid: 9fc0d4010bbf28b4594072e72b8655ab
+  - enabled: 1
+    path: Assets/Scenes/Swim Under.unity
+    guid: 642c65542f2f34bb4bc75902c9c70de6
   m_configObjects: {}
