@@ -207,6 +207,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 192cd34a905454ca9ac4c17eece404a9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  loadDelay: 5
+  victory: {fileID: 8300000, guid: 8240d429ce2814156ab0702229868d5e, type: 3}
+  defeat: {fileID: 8300000, guid: 5e83e9ebc50144898baea9bb8a3b514e, type: 3}
 --- !u!1001 &4213245130255096187
 PrefabInstance:
   m_ObjectHideFlags: 0

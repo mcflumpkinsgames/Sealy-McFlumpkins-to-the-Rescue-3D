@@ -1388,6 +1388,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Sealy McFlumpkins
       objectReference: {fileID: 0}
+    - target: {fileID: 4270129277215356434, guid: 7f2143ca19ca04fc99c6bd8181b42790, type: 3}
+      propertyPath: loadDelay
+      value: 5
+      objectReference: {fileID: 0}
     - target: {fileID: 6586181649896547655, guid: 7f2143ca19ca04fc99c6bd8181b42790, type: 3}
       propertyPath: m_LocalPosition.x
       value: -44
