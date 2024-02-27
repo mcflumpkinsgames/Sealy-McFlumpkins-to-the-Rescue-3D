@@ -9,26 +9,32 @@ public class CollisionHandler : MonoBehaviour
     int currentSceneIndex;
     AudioSource audioSource;
 
+    bool isTransitioning;
+
     void Start()
     {
+        isTransitioning = false;
         currentSceneIndex = SceneManager.GetActiveScene().buildIndex;
         audioSource = GetComponent<AudioSource>();
     }
     private void OnCollisionEnter(Collision other) {
-        switch (other.gameObject.tag)
+        if (!isTransitioning) 
         {
-            case "Friendly":
-                Debug.Log("this thing is friendly");
-                break;
-            case "Fibsh":
-                Debug.Log("Fibsh!!");
-                break;
-            case "Finish":
-                StartVictorySequence();
-                break;
-            default:
-                StartCrashSequence();
-                break;
+            switch (other.gameObject.tag)
+            {
+                case "Friendly":
+                    Debug.Log("this thing is friendly");
+                    break;
+                case "Fibsh":
+                    Debug.Log("Fibsh!!");
+                    break;
+                case "Finish":
+                    StartVictorySequence();
+                    break;
+                default:
+                    StartCrashSequence();
+                    break;
+            }
         }
     }
 
@@ -48,6 +54,9 @@ public class CollisionHandler : MonoBehaviour
 
     void StartCrashSequence()
     {
+        isTransitioning = true;
+        GetComponent<Movement>().enabled = false;
+        audioSource.Stop();
         audioSource.PlayOneShot(defeat);
         GetComponent<Movement>().enabled = false;
         Debug.Log("Womp womp, you died");
@@ -56,8 +65,10 @@ public class CollisionHandler : MonoBehaviour
 
     void StartVictorySequence()
     {
-        audioSource.PlayOneShot(victory);
+        isTransitioning = true;
         GetComponent<Movement>().enabled = false;
+        audioSource.Stop();
+        audioSource.PlayOneShot(victory);
         Debug.Log("You can't fight the power of the seal team");
         Invoke("LoadNextScene", victory.length);
     }
