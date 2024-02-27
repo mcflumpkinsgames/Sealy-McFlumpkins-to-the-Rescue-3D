@@ -3,11 +3,10 @@ using UnityEngine.SceneManagement;
 
 public class CollisionHandler : MonoBehaviour
 {
-    int currentSceneIndex;
-    [SerializeField] float loadDelay = 1f;
     [SerializeField] AudioClip victory;
     [SerializeField] AudioClip defeat;
 
+    int currentSceneIndex;
     AudioSource audioSource;
 
     void Start()
@@ -52,7 +51,7 @@ public class CollisionHandler : MonoBehaviour
         audioSource.PlayOneShot(defeat);
         GetComponent<Movement>().enabled = false;
         Debug.Log("Womp womp, you died");
-        Invoke("ReloadScene", loadDelay);
+        Invoke("ReloadScene", defeat.length);
     }
 
     void StartVictorySequence()
@@ -60,7 +59,7 @@ public class CollisionHandler : MonoBehaviour
         audioSource.PlayOneShot(victory);
         GetComponent<Movement>().enabled = false;
         Debug.Log("You can't fight the power of the seal team");
-        Invoke("LoadNextScene", loadDelay);
+        Invoke("LoadNextScene", victory.length);
     }
 
 }

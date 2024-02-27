@@ -4,10 +4,11 @@ using UnityEngine;
 
 public class Movement : MonoBehaviour
 {
-    Rigidbody rbody;
-    AudioSource audioSource;
     [SerializeField] float flumpingPower = 100.0f;
     [SerializeField] float rotationSpeed = 100.0f;
+
+    Rigidbody rbody;
+    AudioSource audioSource;
 
     // Start is called before the first frame update
     void Start()
