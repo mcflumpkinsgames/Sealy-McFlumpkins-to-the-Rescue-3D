@@ -6,6 +6,10 @@ public class Movement : MonoBehaviour
 {
     [SerializeField] float flumpingPower = 100.0f;
     [SerializeField] float rotationSpeed = 100.0f;
+    [SerializeField] ParticleSystem tailParticles;
+    [SerializeField] ParticleSystem rightFinParticles;
+    [SerializeField] ParticleSystem leftFinParticles;
+
 
     Rigidbody rbody;
     AudioSource audioSource;
@@ -33,9 +37,13 @@ public class Movement : MonoBehaviour
             if (!audioSource.isPlaying) {
                 audioSource.Play();
             }
+            if (!tailParticles.isPlaying) {
+                tailParticles.Play();
+            }
         } else
         {
             StopAudio();
+            tailParticles.Stop();
         }
     }
 

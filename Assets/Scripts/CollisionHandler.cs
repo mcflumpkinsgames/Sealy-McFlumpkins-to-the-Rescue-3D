@@ -6,6 +6,9 @@ public class CollisionHandler : MonoBehaviour
     [SerializeField] AudioClip victory;
     [SerializeField] AudioClip defeat;
 
+    [SerializeField] ParticleSystem victoryParticles;
+    [SerializeField] ParticleSystem crashParticles;
+
     int currentSceneIndex;
     AudioSource audioSource;
 
@@ -59,7 +62,7 @@ public class CollisionHandler : MonoBehaviour
         audioSource.Stop();
         audioSource.PlayOneShot(defeat);
         GetComponent<Movement>().enabled = false;
-        Debug.Log("Womp womp, you died");
+        crashParticles.Play();
         Invoke("ReloadScene", defeat.length);
     }
 
@@ -70,6 +73,7 @@ public class CollisionHandler : MonoBehaviour
         audioSource.Stop();
         audioSource.PlayOneShot(victory);
         Debug.Log("You can't fight the power of the seal team");
+        victoryParticles.Play();
         Invoke("LoadNextScene", victory.length);
     }
 
