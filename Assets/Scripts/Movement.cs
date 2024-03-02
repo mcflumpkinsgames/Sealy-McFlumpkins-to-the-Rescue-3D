@@ -20,6 +20,9 @@ public class Movement : MonoBehaviour
         rbody = GetComponent<Rigidbody>();
         audioSource = GetComponent<AudioSource>();
         StopAudio();
+        tailParticles.Stop();
+        rightFinParticles.Stop();
+        leftFinParticles.Stop();
     }
 
     // Update is called once per frame
@@ -31,19 +34,32 @@ public class Movement : MonoBehaviour
 
     void ProcessFlumps() 
     {
-        if (Input.GetKey(KeyCode.Space)) 
+        if (Input.GetKey(KeyCode.Space))
         {
-            rbody.AddRelativeForce(Vector3.up * flumpingPower * Time.deltaTime);
-            if (!audioSource.isPlaying) {
-                audioSource.Play();
-            }
-            if (!tailParticles.isPlaying) {
-                tailParticles.Play();
-            }
-        } else
+            Flump();
+        }
+        else
         {
-            StopAudio();
-            tailParticles.Stop();
+            StopFlumping();
+        }
+    }
+
+    private void StopFlumping()
+    {
+        StopAudio();
+        tailParticles.Stop();
+    }
+
+    private void Flump()
+    {
+        rbody.AddRelativeForce(Vector3.up * flumpingPower * Time.deltaTime);
+        if (!audioSource.isPlaying)
+        {
+            audioSource.Play();
+        }
+        if (!tailParticles.isPlaying)
+        {
+            tailParticles.Play();
         }
     }
 
@@ -59,11 +75,26 @@ public class Movement : MonoBehaviour
     {
         if (Input.GetKey(KeyCode.A) || Input.GetKey(KeyCode.LeftArrow))
         {
-            ApplyRotation(Vector3.forward);
-        }
-        else if (Input.GetKey(KeyCode.D) || Input.GetKey(KeyCode.RightArrow))
+            RotateSeal(Vector3.forward, rightFinParticles);
+        } else if (Input.GetKey(KeyCode.D) || Input.GetKey(KeyCode.RightArrow))
         {
-            ApplyRotation(Vector3.back);
+            RotateSeal(Vector3.back, leftFinParticles);
+        } else
+        {
+            StopParticles();
+        }
+    }
+
+    private void StopParticles()
+    {
+        leftFinParticles.Stop();
+        rightFinParticles.Stop();
+    }
+
+    private void RotateSeal(Vector3 rotationVector, ParticleSystem particles) {
+        ApplyRotation(rotationVector);
+        if (!particles.isPlaying) {
+            particles.Play();
         }
     }
 

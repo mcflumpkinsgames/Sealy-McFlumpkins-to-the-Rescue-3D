@@ -21,7 +21,7 @@ public class CollisionHandler : MonoBehaviour
         audioSource = GetComponent<AudioSource>();
     }
     private void OnCollisionEnter(Collision other) {
-        if (!isTransitioning) 
+        if (!isTransitioning && isActiveAndEnabled) 
         {
             switch (other.gameObject.tag)
             {
@@ -45,7 +45,7 @@ public class CollisionHandler : MonoBehaviour
         SceneManager.LoadScene(currentSceneIndex);
     }
 
-    void LoadNextScene()
+    public void LoadNextScene()
     {
         int nextScene = currentSceneIndex+1;
         if (nextScene < SceneManager.sceneCountInBuildSettings) {
