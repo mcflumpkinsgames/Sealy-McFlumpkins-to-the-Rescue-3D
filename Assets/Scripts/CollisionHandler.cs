@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -13,6 +14,7 @@ public class CollisionHandler : MonoBehaviour
     AudioSource audioSource;
 
     bool isTransitioning;
+    bool collisionsEnabled = true;
 
     void Start()
     {
@@ -20,8 +22,13 @@ public class CollisionHandler : MonoBehaviour
         currentSceneIndex = SceneManager.GetActiveScene().buildIndex;
         audioSource = GetComponent<AudioSource>();
     }
+
+    void Update()
+    {
+        ProcessCheats();
+    }
     private void OnCollisionEnter(Collision other) {
-        if (!isTransitioning && isActiveAndEnabled) 
+        if (!isTransitioning) 
         {
             switch (other.gameObject.tag)
             {
@@ -57,13 +64,16 @@ public class CollisionHandler : MonoBehaviour
 
     void StartCrashSequence()
     {
-        isTransitioning = true;
-        GetComponent<Movement>().enabled = false;
-        audioSource.Stop();
-        audioSource.PlayOneShot(defeat);
-        GetComponent<Movement>().enabled = false;
-        crashParticles.Play();
-        Invoke("ReloadScene", defeat.length);
+        if (collisionsEnabled) 
+        {
+            isTransitioning = true;
+            GetComponent<Movement>().enabled = false;
+            audioSource.Stop();
+            audioSource.PlayOneShot(defeat);
+            GetComponent<Movement>().enabled = false;
+            crashParticles.Play();
+            Invoke("ReloadScene", defeat.length);
+        }
     }
 
     void StartVictorySequence()
@@ -77,4 +87,27 @@ public class CollisionHandler : MonoBehaviour
         Invoke("LoadNextScene", victory.length);
     }
 
+    void ProcessCheats()
+    {
+        if (Input.GetKeyDown(KeyCode.L)) {
+            LoadNextScene();
+        }
+
+        if (Input.GetKeyDown(KeyCode.C))
+        {
+            ToggleCollisionsEnabled();
+        }
+    }
+
+    private void ToggleCollisionsEnabled()
+    {
+        if (collisionsEnabled) 
+        {
+            collisionsEnabled = false;
+            Debug.Log("collisions disabled");
+        } else {
+            collisionsEnabled = true;
+            Debug.Log("collisions enabled");
+        }
+    }
 }
