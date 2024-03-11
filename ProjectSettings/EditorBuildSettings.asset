@@ -14,4 +14,10 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/Predator.unity
     guid: 0e19d167b33a440a988fb9b23fbf6c6f
+  - enabled: 1
+    path: Assets/Scenes/Boat Boat Boat.unity
+    guid: 830160f72ff7e41c9a0446ae3a7e8d43
+  - enabled: 1
+    path: Assets/Scenes/Boat 2 Boogaloo.unity
+    guid: f47f3fd5dd2e44bfb99a659a348d2f1a
   m_configObjects: {}
