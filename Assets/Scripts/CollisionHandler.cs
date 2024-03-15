@@ -33,10 +33,6 @@ public class CollisionHandler : MonoBehaviour
             switch (other.gameObject.tag)
             {
                 case "Friendly":
-                    Debug.Log("this thing is friendly");
-                    break;
-                case "Fibsh":
-                    Debug.Log("Fibsh!!");
                     break;
                 case "Finish":
                     StartVictorySequence();
@@ -57,9 +53,7 @@ public class CollisionHandler : MonoBehaviour
         int nextScene = currentSceneIndex+1;
         if (nextScene < SceneManager.sceneCountInBuildSettings) {
             SceneManager.LoadScene(nextScene);
-        } else {
-            Debug.Log("look at me look at me I'm a winner");
-        }
+        } 
     }
 
     void StartCrashSequence()
@@ -82,7 +76,6 @@ public class CollisionHandler : MonoBehaviour
         GetComponent<Movement>().enabled = false;
         audioSource.Stop();
         audioSource.PlayOneShot(victory);
-        Debug.Log("You can't fight the power of the seal team");
         victoryParticles.Play();
         Invoke("LoadNextScene", victory.length);
     }
